@@ -1,2 +1,6 @@
 *.swp
 *.swo
+*.drk
+*.gbr
+keyboard-backups
+fp-info-cache
