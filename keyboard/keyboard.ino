@@ -7,7 +7,27 @@
 #define SLEEP_MS 1
 #define BUTTON 65
 #define MAX_SIMULTANELUS_KEYS (16)
+// Numeric keypad
+#define KEY_NUM_LOCK 0xDB
+#define KEY_KP_SLASH 0xDC
+#define KEY_KP_ASTERISK 0xDD
+#define KEY_KP_MINUS 0xDE
+#define KEY_KP_PLUS 0xDF
+#define KEY_KP_EQUAL 0x67
+#define KEY_KP_ENTER 0xE0
+#define KEY_KP_1 0xE1
+#define KEY_KP_2 0xE2
+#define KEY_KP_3 0xE3
+#define KEY_KP_4 0xE4
+#define KEY_KP_5 0xE5
+#define KEY_KP_6 0xE6
+#define KEY_KP_7 0xE7
+#define KEY_KP_8 0xE8
+#define KEY_KP_9 0xE9
+#define KEY_KP_0 0xEA
+#define KEY_KP_DOT 0xEB
 #define KEY_NUM 255
+
 uint8_t keys[ROWS][COLS] = {
     {'t', 0, 0, 0, 0, 0, 0, 0, 0, 'u', 'i', 'o', 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 'j', 'k', 'l', 0, 0, KEY_RETURN, 0},
@@ -15,10 +35,14 @@ uint8_t keys[ROWS][COLS] = {
     {0, 0, 0, 0, 0, 0, KEY_NUM, 0, 0, 0, 0, 0, 0, 0, 0, 0},
 };
 uint8_t num_keys[ROWS][COLS] = {
-    {'n', 0, 0, 0, 0, 0, 0, 0, 0, '7', '8', '9', '=', 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, '4', '5', '6', '+', 0, KEY_RETURN, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, '1', '2', '3', '-', 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, KEY_NUM, 0, 0, '0', 0, '.', 0, 0, 0, 0},
+    {'n', 0, 0, 0, 0, 0, 0, 0, 0, KEY_KP_7, KEY_KP_8, KEY_KP_9, KEY_KP_EQUAL,
+     '(', ')', 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, KEY_KP_4, KEY_KP_5, KEY_KP_6, KEY_KP_PLUS,
+     KEY_KP_SLASH, KEY_KP_ENTER, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, KEY_KP_1, KEY_KP_2, KEY_KP_3, KEY_KP_MINUS, 0,
+     0, 0},
+    {0, 0, 0, 0, 0, 0, KEY_NUM, 0, 0, KEY_KP_0, 0, KEY_KP_DOT, KEY_KP_ASTERISK,
+     0, 0},
 };
 uint8_t row_to_pin[ROWS] = {8, 9, 16, 10};
 char monitor_str[64] = {0};
