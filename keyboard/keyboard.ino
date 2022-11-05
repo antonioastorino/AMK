@@ -6,24 +6,34 @@
 #define ROWS 4
 #define SLEEP_MS 1
 #define BUTTON 65
+#define MAX_SIMULTANELUS_KEYS (16)
+#define KEY_NUM 255
 uint8_t keys[ROWS][COLS] = {
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 'u', 'i', 'o', 0, 0, 0, 0},
+    {'t', 0, 0, 0, 0, 0, 0, 0, 0, 'u', 'i', 'o', 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 'j', 'k', 'l', 0, 0, KEY_RETURN, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 'm', ',', '.', 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, KEY_F13, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, KEY_LEFT_SHIFT, 0, 0, 0, 0, 0, 0, 'm', ',', '.', 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, KEY_NUM, 0, 0, 0, 0, 0, 0, 0, 0, 0},
 };
 uint8_t num_keys[ROWS][COLS] = {
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, '7', '8', '9', '=', 0, 0, 0},
+    {'n', 0, 0, 0, 0, 0, 0, 0, 0, '7', '8', '9', '=', 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0, 0, '4', '5', '6', '+', 0, KEY_RETURN, 0},
     {0, 0, 0, 0, 0, 0, 0, 0, 0, '1', '2', '3', '-', 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, KEY_F13, 0, 0, '0', 0, '.', 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, KEY_NUM, 0, 0, '0', 0, '.', 0, 0, 0, 0},
 };
 uint8_t row_to_pin[ROWS] = {8, 9, 16, 10};
 char monitor_str[64] = {0};
+uint8_t (*current_layout)[ROWS][COLS];
+
+typedef struct _keyPressed {
+  uint8_t row;
+  uint8_t col;
+} keyPressed;
+
+bool key_num_pressed = false;
 
 void setup() {
+  current_layout = &keys;
   Serial.begin(115200);
-  keys[0][0] = KEY_CAPS_LOCK;
   for (int i = 0; i < ROWS; i++) {
     pinMode(row_to_pin[i], INPUT);
     digitalWrite(row_to_pin[i],
@@ -37,9 +47,11 @@ void setup() {
 
 void loop() {
   uint8_t ledStatus = 0;
-  uint8_t ledStatus1 = 0;
-  uint8_t(*current_layout)[ROWS][COLS] = &keys;
   uint8_t button;
+  keyPressed key_pressed[MAX_SIMULTANELUS_KEYS];
+  uint8_t key_pressed_counter = 0;
+  bool new_key_num_pressed = false;
+
   delay(SLEEP_MS);
   for (int col = 0; col < COLS; col++) {
     if (col == COLS - 1) {
@@ -50,21 +62,17 @@ void loop() {
     digitalWrite(CLK, LOW);
     delay(SLEEP_MS);
     digitalWrite(S_DATA, LOW);
-    for (int row = 0; row < ROWS; row++) {
+    for (int row = 0; row < ROWS && key_pressed_counter < MAX_SIMULTANELUS_KEYS;
+         row++) {
       button = (*current_layout)[row][col];
       if (digitalRead(row_to_pin[row])) {
-        if (button == KEY_F13) {
-          // Change layout and do not send this button
-          current_layout = &num_keys;
+        if (button == KEY_NUM) {
+          new_key_num_pressed = true;
           continue;
-        } else {
-          current_layout = &keys;
         }
-        Keyboard.press(button);
-        sprintf(monitor_str, "Row: %d, Col: %d, S%d-%d\n", row, col, ledStatus,
-                ledStatus1);
-        Serial.write(monitor_str);
-
+        key_pressed[key_pressed_counter].col = col;
+        key_pressed[key_pressed_counter].row = row;
+        key_pressed_counter++;
         if (ledStatus) {
           digitalWrite(LED, HIGH);
         } else {
@@ -75,4 +83,19 @@ void loop() {
       }
     }
   }
+  // Change layout and do not send this button
+  current_layout = new_key_num_pressed ? &num_keys : &keys;
+  if (key_num_pressed != new_key_num_pressed) {
+    Serial.println("Rel");
+    Keyboard.releaseAll();
+  }
+  for (uint8_t p = 0; p < key_pressed_counter; p++) {
+    uint8_t row = key_pressed[p].row;
+    uint8_t col = key_pressed[p].col;
+    uint8_t button = (*current_layout)[row][col];
+    sprintf(monitor_str, "Row: %d, Col: %d, B%d\n", row, col, button);
+    Serial.write(monitor_str);
+    Keyboard.press(button);
+  }
+  key_num_pressed = new_key_num_pressed;
 }
