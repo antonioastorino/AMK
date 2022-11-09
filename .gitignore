@@ -2,5 +2,6 @@
 *.swo
 *.drk
 *.gbr
+*.blend
 keyboard-backups
 fp-info-cache
