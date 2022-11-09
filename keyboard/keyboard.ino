@@ -1,3 +1,4 @@
+#include "oled.h"
 #include <Keyboard.h>
 #define LED 17
 #define LOCK_1 7
@@ -6,7 +7,6 @@
 #define S_DATA 5
 #define COLS 16
 #define ROWS 4
-#define SLEEP_MS 1
 #define BUTTON 65
 #define MAX_SIMULTANELUS_KEYS (16)
 // Numeric keypad
@@ -57,9 +57,23 @@ typedef struct _keyPressed {
 
 bool key_num_pressed = false;
 
+void flush_registers() {
+  digitalWrite(S_DATA, LOW);
+  for (uint8_t b = 0; b < 15; b++) {
+    digitalWrite(CLK, HIGH);
+    digitalWrite(CLK, LOW);
+  }
+  // Assert the last bit - this will be the first loaded in the shift register
+  digitalWrite(S_DATA, HIGH);
+  digitalWrite(CLK, HIGH);
+  digitalWrite(CLK, LOW);
+}
+
 void setup() {
   current_layout = &keys;
+  oled_init(S_DATA, CLK);
   Serial.begin(115200);
+  delay(2000);
   for (int i = 0; i < ROWS; i++) {
     pinMode(row_to_pin[i], INPUT);
     digitalWrite(row_to_pin[i],
@@ -71,6 +85,8 @@ void setup() {
   pinMode(CLK, OUTPUT);
   pinMode(S_DATA, OUTPUT);
   Keyboard.begin();
+  oled_home();
+  oled_disable();
 }
 
 void loop() {
@@ -79,16 +95,13 @@ void loop() {
   uint8_t key_pressed_counter = 0;
   bool new_key_num_pressed = false;
 
-  delay(SLEEP_MS);
+  digitalWrite(S_DATA, LOW);
   for (int col = 0; col < COLS; col++) {
     if (col == COLS - 1) {
       digitalWrite(S_DATA, HIGH);
     }
     digitalWrite(CLK, HIGH);
-    delay(SLEEP_MS);
     digitalWrite(CLK, LOW);
-    delay(SLEEP_MS);
-    digitalWrite(S_DATA, LOW);
     for (int row = 0; row < ROWS && key_pressed_counter < MAX_SIMULTANELUS_KEYS;
          row++) {
       button = (*current_layout)[row][col];
@@ -118,15 +131,18 @@ void loop() {
     current_layout = &keys;
   }
   if (key_num_pressed != new_key_num_pressed) {
-    //    Serial.println("Rel");
+    oled_start_data();
+    oled_sendByte(0xFF);
+    oled_disable();
+    flush_registers();
     Keyboard.releaseAll();
   }
   for (uint8_t p = 0; p < key_pressed_counter; p++) {
     uint8_t row = key_pressed[p].row;
     uint8_t col = key_pressed[p].col;
     uint8_t button = (*current_layout)[row][col];
-    //    sprintf(monitor_str, "Row: %d, Col: %d, B%d\n", row, col, button);
-    //    Serial.write(monitor_str);
+//    sprintf(monitor_str, "Row: %d, Col: %d, B%d\n", row, col, button);
+//    Serial.write(monitor_str);
     Keyboard.press(button);
   }
   key_num_pressed = new_key_num_pressed;
