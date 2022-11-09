@@ -29,12 +29,24 @@
 #define KEY_KP_0 0xEA
 #define KEY_KP_DOT 0xEB
 #define KEY_NUM 255
+#define KEY_FN_01 0
+#define KEY_FN_02 0
+#define KEY_FN_03 0
+#define KEY_FN_04 0
+#define KEY_FN_05 0
+#define KEY_FN_06 0
+#define KEY_FN_07 0
+#define KEY_FN_08 0
 
 uint8_t keys[ROWS][COLS] = {
-    {'t', KEY_ESC, 0, 0, 0, 0, 0, 0, 0, 'u', 'i', 'o', 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0, 'j', 'k', 'l', 0, 0, KEY_RETURN, 0},
-    {0, 0, KEY_LEFT_SHIFT, 0, 0, 0, 0, 0, 0, 'm', ',', '.', 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, KEY_NUM, KEY_BACKSPACE, ' ', 0, 0, 0, 0, 0, 0, 0},
+    {KEY_FN_01, KEY_ESC, KEY_TAB, 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o',
+     'p', '[', ']', KEY_FN_05},
+    {KEY_FN_02, KEY_CAPS_LOCK, '`', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l',
+     0, 0, KEY_RETURN, KEY_FN_06},
+    {KEY_FN_03, 0, KEY_LEFT_SHIFT, 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.',
+     '/', KEY_RIGHT_SHIFT, '\\', KEY_FN_07},
+    {KEY_FN_04, 0, 0, 0, 0, 0, KEY_NUM, KEY_BACKSPACE, ' ', 0, 0, 0, 0, 0, 0,
+     KEY_FN_08},
 };
 uint8_t num_keys[ROWS][COLS] = {
     {'n', KEY_ESC, 0, 0, 0, 0, 0, 0, 0, KEY_KP_7, KEY_KP_8, KEY_KP_9,
@@ -141,8 +153,8 @@ void loop() {
     uint8_t row = key_pressed[p].row;
     uint8_t col = key_pressed[p].col;
     uint8_t button = (*current_layout)[row][col];
-//    sprintf(monitor_str, "Row: %d, Col: %d, B%d\n", row, col, button);
-//    Serial.write(monitor_str);
+    //    sprintf(monitor_str, "Row: %d, Col: %d, B%d\n", row, col, button);
+    //    Serial.write(monitor_str);
     Keyboard.press(button);
   }
   key_num_pressed = new_key_num_pressed;
