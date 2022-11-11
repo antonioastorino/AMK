@@ -7,6 +7,7 @@ void oled_sendByte(uint8_t data);
 void oled_start_commands();
 void oled_start_data();
 void oled_disable();
-void oled_home();
+void oled_displayBitmap();
+void oled_addPixel(uint8_t x, uint8_t y);
 
 #endif

@@ -1,3 +1,4 @@
+#include "graphics.h"
 #include "oled.h"
 #include <SoftwareSerial.h>
 
@@ -5,9 +6,6 @@
 #define RES_ 2
 #define DC_ 4
 #define CS_ 3
-#define DISPLAY_ROWS 32
-#define DISPLAY_COLS 128
-
 static uint8_t oled_SDA;
 static uint8_t oled_CLK;
 
@@ -16,11 +14,13 @@ void oled_start_commands()
     digitalWrite(CS_, LOW);
     digitalWrite(DC_, LOW);
 }
+
 void oled_start_data()
 {
     digitalWrite(CS_, LOW);
     digitalWrite(DC_, HIGH);
 }
+
 void oled_disable() { digitalWrite(CS_, HIGH); }
 
 #define displayOff() oled_sendByte(0xAE)
@@ -40,10 +40,7 @@ void oled_disable() { digitalWrite(CS_, HIGH); }
 #define setMemoryMode(value)                                                                       \
     oled_sendByte(0x20);                                                                           \
     oled_sendByte(value)
-#define setSegmentRemap(value)                                                                     \
-    {                                                                                              \
-        oled_sendByte(0xA0 | value);                                                               \
-    }
+#define setSegmentRemap(value) oled_sendByte(0xA0 | value)
 #define setComScanDirection(value) oled_sendByte(0xC0 | value)
 #define setComPins(value)                                                                          \
     oled_sendByte(0xDA);                                                                           \
@@ -69,7 +66,6 @@ void oled_disable() { digitalWrite(CS_, HIGH); }
 #define setColumnAddress(value)                                                                    \
     oled_sendByte(0x21);                                                                           \
     oled_sendByte(value)
-
 #define clockPulse()                                                                               \
     digitalWrite(oled_CLK, HIGH);                                                                  \
     digitalWrite(oled_CLK, LOW)
@@ -82,6 +78,7 @@ void reset()
     delay(10);
     digitalWrite(RES_, HIGH);
 }
+
 void oled_sendByte(uint8_t data)
 {
     for (uint8_t mask = 0x80; mask; mask >>= 1)
@@ -106,12 +103,8 @@ void oled_home()
 
 void clearDisplay()
 {
-    oled_home();
-    oled_start_data();
-    for (uint16_t index = 0; index < (DISPLAY_ROWS * DISPLAY_COLS) / 8; index++)
-    {
-        oled_sendByte(0x00);
-    }
+    graphics_clear_buffer();
+    oled_displayBitmap();
 }
 
 void oled_init(uint8_t sda, uint8_t clk)
@@ -161,16 +154,22 @@ void oled_init(uint8_t sda, uint8_t clk)
     clearDisplay();
 }
 
-void oled_loop()
+void oled_displayBitmap()
 {
-    for (uint8_t d = 128; d > 0; d >>= 1)
+    oled_home();
+    oled_start_data();
+    uint8_t(*bitmap)[DISPLAY_COLS][DISPLAY_PAGES] = graphics_get_bitmap();
+    for (uint8_t page = 0; page < DISPLAY_PAGES; page++)
     {
-        oled_home();
-        oled_start_data();
-        for (uint16_t i = 0; i < DISPLAY_ROWS * DISPLAY_COLS / 8; i++)
+        for (uint8_t col = 0; col < DISPLAY_COLS; col++)
         {
-            oled_sendByte(d);
+            oled_sendByte((*bitmap)[col][page]);
+            Serial.print((*bitmap)[col][page], HEX);
+            Serial.print(' ');
         }
-        delay(100);
+        Serial.println();
     }
+    Serial.println();
 }
+
+void oled_addPixel(uint8_t x, uint8_t y) { graphics_add_pixel(x, y); }

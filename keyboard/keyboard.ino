@@ -97,7 +97,6 @@ void setup() {
   pinMode(CLK, OUTPUT);
   pinMode(S_DATA, OUTPUT);
   Keyboard.begin();
-  oled_home();
   oled_disable();
 }
 
@@ -143,8 +142,7 @@ void loop() {
     current_layout = &keys;
   }
   if (key_num_pressed != new_key_num_pressed) {
-    oled_start_data();
-    oled_sendByte(0xFF);
+    oled_displayBitmap();
     oled_disable();
     flush_registers();
     Keyboard.releaseAll();
@@ -153,8 +151,9 @@ void loop() {
     uint8_t row = key_pressed[p].row;
     uint8_t col = key_pressed[p].col;
     uint8_t button = (*current_layout)[row][col];
-    //    sprintf(monitor_str, "Row: %d, Col: %d, B%d\n", row, col, button);
-    //    Serial.write(monitor_str);
+//    sprintf(monitor_str, "Row: %d, Col: %d, B%d\n", row, col, button);
+//    Serial.write(monitor_str);
+    oled_addPixel(col, row);
     Keyboard.press(button);
   }
   key_num_pressed = new_key_num_pressed;
