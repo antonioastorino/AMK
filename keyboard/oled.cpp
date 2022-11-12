@@ -173,3 +173,12 @@ void oled_displayBitmap()
 }
 
 void oled_addPixel(uint8_t x, uint8_t y) { graphics_add_pixel(x, y); }
+
+void oled_addInlineSymbol(uint8_t cursor_position, uint8_t page, char c)
+{
+    if (c == 'a')
+    {
+        uint8_t symbol[8] = {0x05, 0x00, 0x00, 0xff, 0x00, 0x00, 0x00, 0x07};
+        graphics_add_inline_symbol(cursor_position, page, symbol);
+    }
+}

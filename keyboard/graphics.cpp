@@ -21,3 +21,11 @@ void graphics_clear_buffer()
 }
 
 uint8_t (*graphics_get_bitmap())[DISPLAY_COLS][DISPLAY_PAGES] { return &bitmap; }
+
+void graphics_add_inline_symbol(uint8_t cursor_position, uint8_t page, uint8_t symbol[8])
+{
+    for (uint8_t index = 0; index < 8; index++)
+    {
+        bitmap[cursor_position * 8 + index][page] = symbol[index];
+    }
+}
