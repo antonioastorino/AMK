@@ -153,7 +153,7 @@ void loop() {
     uint8_t button = (*current_layout)[row][col];
     //    sprintf(monitor_str, "Row: %d, Col: %d, B%d\n", row, col, button);
     //    Serial.write(monitor_str);
-    oled_addPixel(10 * col, 4 * row);
+    oled_addPixel(8 * col, 4 * row);
     Keyboard.press(button);
   }
   key_num_pressed = new_key_num_pressed;
