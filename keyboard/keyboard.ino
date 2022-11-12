@@ -151,9 +151,9 @@ void loop() {
     uint8_t row = key_pressed[p].row;
     uint8_t col = key_pressed[p].col;
     uint8_t button = (*current_layout)[row][col];
-//    sprintf(monitor_str, "Row: %d, Col: %d, B%d\n", row, col, button);
-//    Serial.write(monitor_str);
-    oled_addPixel(col, row);
+    //    sprintf(monitor_str, "Row: %d, Col: %d, B%d\n", row, col, button);
+    //    Serial.write(monitor_str);
+    oled_addPixel(10 * col, 4 * row);
     Keyboard.press(button);
   }
   key_num_pressed = new_key_num_pressed;

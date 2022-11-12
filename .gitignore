@@ -3,5 +3,6 @@
 *.drk
 *.gbr
 *.blend
+sketch.json
 keyboard-backups
 fp-info-cache
