@@ -37,6 +37,10 @@
 #define KEY_FN_06 0
 #define KEY_FN_07 0
 #define KEY_FN_08 0
+#define KEY_LEFT_CMD KEY_LEFT_GUI
+#define KEY_RIGHT_CMD KEY_RIGHT_GUI
+#define KEY_LEFT_OPTION KEY_LEFT_ALT
+#define KEY_RIGHT_OPTION KEY_RIGHT_ALT
 
 uint8_t keys[ROWS][COLS] = {
     {KEY_FN_01, KEY_ESC, KEY_TAB, 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o',
@@ -45,8 +49,9 @@ uint8_t keys[ROWS][COLS] = {
      0, 0, KEY_RETURN, KEY_FN_06},
     {KEY_FN_03, 0, KEY_LEFT_SHIFT, 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.',
      '/', KEY_RIGHT_SHIFT, '\\', KEY_FN_07},
-    {KEY_FN_04, 0, 0, 0, 0, 0, KEY_NUM, KEY_BACKSPACE, ' ', 0, 0, 0, 0, 0, 0,
-     KEY_FN_08},
+    {KEY_FN_04, 0, KEY_LEFT_CTRL, 0, KEY_LEFT_OPTION, KEY_LEFT_CMD, KEY_NUM,
+     KEY_BACKSPACE, ' ', KEY_RIGHT_CMD, KEY_RIGHT_OPTION, KEY_LEFT_ARROW,
+     KEY_DOWN_ARROW, KEY_UP_ARROW, KEY_RIGHT_ARROW, KEY_FN_08},
 };
 uint8_t num_keys[ROWS][COLS] = {
     {'n', KEY_ESC, 0, 0, 0, 0, 0, 0, 0, KEY_KP_7, KEY_KP_8, KEY_KP_9,
