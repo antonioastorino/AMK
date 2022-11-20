@@ -1,8 +1,8 @@
 #include "graphics.h"
 #include "oled.h"
+#include "common.h"
 #include <SoftwareSerial.h>
 
-//#define DEBUG
 #define RES_ 2
 #define DC_ 4
 #define CS_ 3
@@ -87,9 +87,9 @@ void oled_sendByte(uint8_t data)
         clockPulse();
     }
 #ifdef DEBUG
-    Serial.print("0x");
-    Serial.print(data, HEX);
-    Serial.write(10);
+    SERIAL_PRINT("0x");
+    SERIAL_PRINT(data, HEX);
+    SERIAL_WRITE(' ');
 #endif
 }
 
@@ -164,12 +164,12 @@ void oled_displayBitmap()
         for (uint8_t col = 0; col < DISPLAY_COLS; col++)
         {
             oled_sendByte((*bitmap)[col][page]);
-            Serial.print((*bitmap)[col][page], HEX);
-            Serial.print(' ');
+            SERIAL_PRINT((*bitmap)[col][page], HEX);
+            SERIAL_PRINT(' ');
         }
-        Serial.println();
+        SERIAL_PRINTLN();
     }
-    Serial.println();
+    SERIAL_PRINTLN();
 }
 
 void oled_addPixel(uint8_t x, uint8_t y) { graphics_add_pixel(x, y); }
