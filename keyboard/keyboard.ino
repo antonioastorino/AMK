@@ -18,8 +18,8 @@
 #define KEY_FN_04 0
 #define KEY_FN_05 KEY_VOLUMEDOWN
 #define KEY_FN_06 KEY_VOLUMEUP
-#define KEY_FN_07 0
-#define KEY_FN_08 0
+#define KEY_FN_07 KEY_F14
+#define KEY_FN_08 KEY_F15
 #define KEY_MOD_LCMD KEY_MOD_LMETA
 #define KEY_MOD_RCMD KEY_MOD_RMETA
 #define KEY_MOD_LOPTION KEY_MOD_LALT
@@ -35,8 +35,8 @@ uint8_t layout_0[2][ROWS][COLS] = {
          KEY_FN_06},
         {KEY_FN_03, 0, 0, KEY_Z, KEY_X, KEY_C, KEY_V, KEY_B, KEY_N, KEY_M,
          KEY_COMMA, KEY_DOT, KEY_SLASH, 0, KEY_BACKSLASH, KEY_FN_07},
-        {KEY_FN_04, 0, 0, 0, 0, 0, 0, KEY_BACKSPACE, KEY_SPACE, 0, 0, KEY_LEFT,
-         KEY_DOWN, KEY_UP, KEY_RIGHT, KEY_FN_08},
+        {KEY_FN_04, KEY_F6, 0, 0, 0, 0, 0, KEY_BACKSPACE, KEY_SPACE, 0, 0,
+         KEY_LEFT, KEY_DOWN, KEY_UP, KEY_RIGHT, KEY_FN_08},
     },
     {
         // Modifiers
@@ -53,11 +53,11 @@ uint8_t layout_1[2][ROWS][COLS] = {
         // Keys
         {0, KEY_ESC, 0, 0, 0, 0, 0, 0, 0, KEY_KP7, KEY_KP8, KEY_KP9,
          KEY_KPEQUAL, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, KEY_KP4, KEY_KP5, KEY_KP6, KEY_EQUAL,
-         KEY_KPSLASH, KEY_KPENTER, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, KEY_KP4, KEY_KP5, KEY_KP6, KEY_EQUAL, 0,
+         KEY_KPENTER, 0},
         {0, 0, 0, 0, 0, 0, 0, 0, 0, KEY_KP1, KEY_KP2, KEY_KP3, KEY_KPMINUS, 0,
          0, 0},
-        {0, 0, 0, 0, 0, 0, KEY_LAYER_NUM, KEY_BACKSPACE, KEY_SPACE, KEY_KP0, 0,
+        {0, 0, 0, 0, 0, 0, 0, KEY_BACKSPACE, KEY_SPACE, KEY_KP0, KEY_KPSLASH,
          KEY_KPDOT, KEY_KPASTERISK, 0, 0},
     },
     {
@@ -77,7 +77,7 @@ uint8_t layout_2[2][ROWS][COLS] = {
         {0, 0, 0, 0, 0, 0, 0, 0, KEY_LEFT, KEY_DOWN, KEY_UP, KEY_RIGHT, 0, 0, 0,
          0},
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, KEY_LAYER_SYM, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, KEY_DELETE, 0, 0, 0, 0, 0, 0},
     },
     {
         // Modifiers
