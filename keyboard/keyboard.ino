@@ -24,74 +24,237 @@
 #define KEY_MOD_RCMD KEY_MOD_RMETA
 #define KEY_MOD_LOPTION KEY_MOD_LALT
 #define KEY_MOD_ROPTION KEY_MOD_RALT
+#define INDEX_KEY 0
+#define INDEX_MOD 1
 
-uint8_t layout_0[2][ROWS][COLS] = {
+uint8_t layout_0[ROWS][COLS][2] = {
     {
-        // Keys
-        {KEY_FN_01, KEY_ESC, KEY_TAB, KEY_Q, KEY_W, KEY_E, KEY_R, KEY_T, KEY_Y,
-         KEY_U, KEY_I, KEY_O, KEY_P, KEY_LEFTBRACE, KEY_RIGHTBRACE, KEY_FN_05},
-        {KEY_FN_02, KEY_CAPSLOCK, KEY_GRAVE, KEY_A, KEY_S, KEY_D, KEY_F, KEY_G,
-         KEY_H, KEY_J, KEY_K, KEY_L, KEY_SEMICOLON, KEY_APOSTROPHE, KEY_ENTER,
-         KEY_FN_06},
-        {KEY_FN_03, 0, 0, KEY_Z, KEY_X, KEY_C, KEY_V, KEY_B, KEY_N, KEY_M,
-         KEY_COMMA, KEY_DOT, KEY_SLASH, 0, KEY_BACKSLASH, KEY_FN_07},
-        {KEY_FN_04, KEY_F6, 0, 0, 0, 0, 0, KEY_BACKSPACE, KEY_SPACE, 0, 0,
-         KEY_LEFT, KEY_DOWN, KEY_UP, KEY_RIGHT, KEY_FN_08},
+        {KEY_FN_01, 0},
+        {KEY_ESC, 0},
+        {KEY_TAB, 0},
+        {KEY_Q, 0},
+        {KEY_W, 0},
+        {KEY_E, 0},
+        {KEY_R, 0},
+        {KEY_T, 0},
+        {KEY_Y, 0},
+        {KEY_U, 0},
+        {KEY_I, 0},
+        {KEY_O, 0},
+        {KEY_P, 0},
+        {KEY_LEFTBRACE, 0},
+        {KEY_RIGHTBRACE, 0},
+        {KEY_FN_05, 0},
     },
     {
-        // Modifiers
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, KEY_MOD_LSHIFT, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, KEY_MOD_RSHIFT, 0,
-         0},
-        {0, 0, KEY_MOD_LCTRL, KEY_MOD_LOPTION, KEY_MOD_LCMD, KEY_LAYER_SYM,
-         KEY_LAYER_NUM, 0, 0, KEY_MOD_RCMD, 0, 0, 0, 0, 0, 0},
+        {KEY_FN_02, 0},
+        {KEY_CAPSLOCK, 0},
+        {KEY_GRAVE, 0},
+        {KEY_A, 0},
+        {KEY_S, 0},
+        {KEY_D, 0},
+        {KEY_F, 0},
+        {KEY_G, 0},
+        {KEY_H, 0},
+        {KEY_J, 0},
+        {KEY_K, 0},
+        {KEY_L, 0},
+        {KEY_SEMICOLON, 0},
+        {KEY_APOSTROPHE, 0},
+        {KEY_ENTER, 0},
+        {KEY_FN_06, 0},
+    },
+    {
+        {KEY_FN_03, 0},
+        {0, 0},
+        {0, KEY_MOD_LSHIFT},
+        {KEY_Z, 0},
+        {KEY_X, 0},
+        {KEY_C, 0},
+        {KEY_V, 0},
+        {KEY_B, 0},
+        {KEY_N, 0},
+        {KEY_M, 0},
+        {KEY_COMMA, 0},
+        {KEY_DOT, 0},
+        {KEY_SLASH, 0},
+        {0, KEY_MOD_RSHIFT},
+        {0, 0},
+        {KEY_FN_07, 0},
+    },
+    {
+        {KEY_FN_04, 0},
+        {KEY_F6, 0},
+        {0, KEY_MOD_LCTRL},
+        {0, KEY_MOD_LOPTION},
+        {0, KEY_MOD_LCMD},
+        {0, KEY_LAYER_SYM},
+        {0, KEY_LAYER_NUM},
+        {KEY_BACKSPACE, 0},
+        {KEY_SPACE, 0},
+        {KEY_BACKSLASH, 0},
+        {0, 0},
+        {KEY_LEFT, 0},
+        {KEY_DOWN, 0},
+        {KEY_UP, 0},
+        {KEY_RIGHT, 0},
+        {KEY_FN_08, 0},
     },
 };
-uint8_t layout_1[2][ROWS][COLS] = {
+
+uint8_t layout_1[ROWS][COLS][2] = {
     {
-        // Keys
-        {0, KEY_ESC, 0, 0, 0, 0, 0, 0, 0, KEY_7, KEY_8, KEY_9, KEY_EQUAL, 0, 0,
-         0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, KEY_4, KEY_5, KEY_6, KEY_EQUAL, 0,
-         KEY_ENTER, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, KEY_1, KEY_2, KEY_3, KEY_MINUS, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, KEY_BACKSPACE, KEY_SPACE, KEY_0, KEY_SLASH,
-         KEY_DOT, KEY_8, 0, 0, 0},
+        {0, KEY_MOD_LSHIFT},
+        {KEY_ESC, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {KEY_7, 0},
+        {KEY_8, 0},
+        {KEY_9, 0},
+        {KEY_EQUAL, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
     },
     {
-        // Modifiers
-        {KEY_MOD_LSHIFT, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, KEY_MOD_LSHIFT, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, KEY_LAYER_SYM, KEY_LAYER_NUM, 0, 0, 0, 0, 0,
-         KEY_MOD_LSHIFT, 0, 0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {KEY_4, 0},
+        {KEY_5, 0},
+        {KEY_6, 0},
+        {KEY_EQUAL, KEY_MOD_LSHIFT},
+        {0, 0},
+        {KEY_ENTER, 0},
+        {0, 0},
+    },
+    {
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {KEY_1, 0},
+        {KEY_2, 0},
+        {KEY_3, 0},
+        {KEY_MINUS, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+    },
+    {
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, KEY_LAYER_SYM},
+        {0, KEY_LAYER_NUM},
+        {KEY_BACKSPACE, 0},
+        {KEY_SPACE, 0},
+        {KEY_0, 0},
+        {KEY_SLASH, 0},
+        {KEY_DOT, 0},
+        {KEY_8, KEY_MOD_LSHIFT},
+        {0, 0},
+        {0, 0},
+        {0, 0},
     },
 };
-uint8_t layout_2[2][ROWS][COLS] = {
+
+uint8_t layout_2[ROWS][COLS][2] = {
     {
-        // Keys
-        {0, 0, 0, KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6, KEY_7, KEY_8, KEY_9,
-         KEY_0, KEY_MINUS, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, KEY_LEFT, KEY_DOWN, KEY_UP, KEY_RIGHT, 0, 0, 0,
-         0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, KEY_DELETE, 0, 0, 0, 0, 0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {KEY_1, KEY_MOD_LSHIFT},
+        {KEY_2, KEY_MOD_LSHIFT},
+        {KEY_3, KEY_MOD_LSHIFT},
+        {KEY_4, KEY_MOD_LSHIFT},
+        {KEY_5, KEY_MOD_LSHIFT},
+        {KEY_6, KEY_MOD_LSHIFT},
+        {KEY_7, KEY_MOD_LSHIFT},
+        {KEY_8, KEY_MOD_LSHIFT},
+        {KEY_9, KEY_MOD_LSHIFT},
+        {KEY_0, KEY_MOD_LSHIFT},
+        {KEY_MINUS, KEY_MOD_LSHIFT},
+        {0, 0},
+        {0, 0},
     },
     {
-        // Modifiers
-        {0, 0, 0, KEY_MOD_LSHIFT, KEY_MOD_LSHIFT, KEY_MOD_LSHIFT,
-         KEY_MOD_LSHIFT, KEY_MOD_LSHIFT, KEY_MOD_LSHIFT, KEY_MOD_LSHIFT,
-         KEY_MOD_LSHIFT, KEY_MOD_LSHIFT, KEY_MOD_LSHIFT, KEY_MOD_LSHIFT, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, KEY_LAYER_SYM, KEY_LAYER_NUM, 0, 0, 0, 0, 0, 0, 0, 0,
-         0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {KEY_EQUAL, KEY_MOD_LCMD},
+        {KEY_LEFT, 0},
+        {KEY_DOWN, 0},
+        {KEY_UP, 0},
+        {KEY_RIGHT, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+    },
+    {
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {KEY_MINUS, KEY_MOD_LCMD},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+    },
+    {
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, KEY_LAYER_SYM},
+        {0, KEY_LAYER_NUM},
+        {0, 0},
+        {0, 0},
+        {KEY_DELETE, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
+        {0, 0},
     },
 };
+
 const uint8_t row_to_pin[ROWS] = {8, 9, 16, 10};
 char monitor_str[64] = {0};
-uint8_t (*current_layout)[2][ROWS][COLS];
+uint8_t (*current_layout)[ROWS][COLS][2];
 
 typedef struct _keyPressed {
   uint8_t row;
@@ -152,8 +315,8 @@ void loop() {
     digitalWrite(CLK, LOW);
     for (int row = 0; row < ROWS && key_pressed_counter < MAX_SIMULTANELUS_KEYS;
          row++) {
-      button = (*current_layout)[0][row][col];
-      modifier = (*current_layout)[1][row][col];
+      button = (*current_layout)[row][col][INDEX_KEY];
+      modifier = (*current_layout)[row][col][INDEX_MOD];
       if (digitalRead(row_to_pin[row])) {
         if (modifier == KEY_LAYER_NUM) {
           new_key_num_pressed = true;
@@ -200,13 +363,14 @@ void loop() {
     flush_registers();
     Keyboard.releaseAll();
   }
+
+  // Update keyboard state
   uint8_t button_pressed_count = 0;
   for (uint8_t p = 0; p < key_pressed_counter; p++) {
-
     uint8_t row = key_pressed[p].row;
     uint8_t col = key_pressed[p].col;
-    uint8_t button = (*current_layout)[0][row][col];
-    uint8_t modifier = (*current_layout)[1][row][col];
+    uint8_t button = (*current_layout)[row][col][INDEX_KEY];
+    uint8_t modifier = (*current_layout)[row][col][INDEX_MOD];
     if (button && button_pressed_count < 6) {
       Keyboard.pressRaw(button, button_pressed_count);
       button_pressed_count++;
