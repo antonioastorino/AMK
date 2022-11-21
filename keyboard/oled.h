@@ -10,5 +10,6 @@ void oled_disable();
 void oled_displayBitmap();
 void oled_addPixel(uint8_t x, uint8_t y);
 void oled_addInlineSymbol(uint8_t cursor_position, uint8_t page, char c);
+void oled_clearDisplay();
 
 #endif

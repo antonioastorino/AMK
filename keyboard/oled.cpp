@@ -1,6 +1,6 @@
+#include "common.h"
 #include "graphics.h"
 #include "oled.h"
-#include "common.h"
 #include <SoftwareSerial.h>
 
 #define RES_ 2
@@ -101,7 +101,7 @@ void oled_home()
     setStartLine(0x3F);
 }
 
-void clearDisplay()
+void oled_clearDisplay()
 {
     graphics_clear_buffer();
     oled_displayBitmap();
@@ -151,7 +151,7 @@ void oled_init(uint8_t sda, uint8_t clk)
     setNormalMode();
     deactivateScroll();
     displayOn();
-    clearDisplay();
+    oled_clearDisplay();
 }
 
 void oled_displayBitmap()

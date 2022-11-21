@@ -194,6 +194,10 @@ void loop() {
     Keyboard.releaseAll();
   }
   if (key_sym_pressed != new_key_sym_pressed) {
+    oled_clearDisplay();
+    oled_displayBitmap();
+    oled_disable();
+    flush_registers();
     Keyboard.releaseAll();
   }
   uint8_t button_pressed_count = 0;
