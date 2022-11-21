@@ -51,22 +51,21 @@ uint8_t layout_0[2][ROWS][COLS] = {
 uint8_t layout_1[2][ROWS][COLS] = {
     {
         // Keys
-        {0, KEY_ESC, 0, 0, 0, 0, 0, 0, 0, KEY_KP7, KEY_KP8, KEY_KP9,
-         KEY_KPEQUAL, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, KEY_KP4, KEY_KP5, KEY_KP6, KEY_EQUAL, 0,
-         KEY_KPENTER, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, KEY_KP1, KEY_KP2, KEY_KP3, KEY_KPMINUS, 0,
-         0, 0},
-        {0, 0, 0, 0, 0, 0, 0, KEY_BACKSPACE, KEY_SPACE, KEY_KP0, KEY_KPSLASH,
-         KEY_KPDOT, KEY_KPASTERISK, 0, 0},
+        {0, KEY_ESC, 0, 0, 0, 0, 0, 0, 0, KEY_7, KEY_8, KEY_9, KEY_EQUAL, 0, 0,
+         0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, KEY_4, KEY_5, KEY_6, KEY_EQUAL, 0,
+         KEY_ENTER, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, KEY_1, KEY_2, KEY_3, KEY_MINUS, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, KEY_BACKSPACE, KEY_SPACE, KEY_0, KEY_SLASH,
+         KEY_DOT, KEY_8, 0, 0, 0},
     },
     {
         // Modifiers
         {KEY_MOD_LSHIFT, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, KEY_MOD_LSHIFT, 0, 0, 0},
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, KEY_LAYER_SYM, KEY_LAYER_NUM, 0, 0, 0, 0, 0, 0, 0, 0,
-         0},
+        {0, 0, 0, 0, 0, KEY_LAYER_SYM, KEY_LAYER_NUM, 0, 0, 0, 0, 0,
+         KEY_MOD_LSHIFT, 0, 0, 0},
     },
 };
 uint8_t layout_2[2][ROWS][COLS] = {
