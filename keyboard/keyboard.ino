@@ -304,6 +304,7 @@ void loop() {
   uint8_t key_pressed_counter = 0;
   bool new_key_num_pressed = false;
   bool new_key_sym_pressed = false;
+  delay(10);
 
   Keyboard.releaseAll();
   digitalWrite(S_DATA, LOW);
